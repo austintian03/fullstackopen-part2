@@ -38,6 +38,18 @@ const App = () => {
     setNewNumber('')
   }
   
+  const deletePerson = (id) => {
+    const person = persons.find(p => p.id === id)
+
+    if(window.confirm(`Delete ${person.name}?`)) {
+      phonebookService
+        .remove(id)
+        .then(deletedPerson => {
+          setPersons(persons.filter(p => p.id !== deletedPerson.id))
+        })
+    } 
+  }
+
   const handleNameChange = (event) => {
     console.log(event.target.value)
     setNewName(event.target.value)
@@ -68,7 +80,7 @@ const App = () => {
 
       <h3>Numbers</h3> 
 
-      <Persons persons={peopleToShow} />
+      <Persons persons={peopleToShow} handleDelete={deletePerson} />
     </div>
   )
 }
