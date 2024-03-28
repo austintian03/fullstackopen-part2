@@ -1,3 +1,5 @@
+import Weather from './Weather'
+
 const LanguageList = ({ languages }) => {
     
     const langs = Object.entries(languages)
@@ -30,6 +32,7 @@ const CountryData = ({ country }) => {
             </p>
             <LanguageList languages={country.languages} />
             <Flag flag={country.flags} />
+            <Weather capitalName={country.capital[0]} />
         </div>
     )
 }
