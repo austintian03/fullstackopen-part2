@@ -34,7 +34,14 @@ const CountryData = ({ country }) => {
     )
 }
 
-const CountryDisplay = ({ countries }) => {
+const CountryLine = ({ country, onClick }) => {
+    return (
+        <span>{country.name.common} <button onClick={onClick}>show</button><br /></span>
+    )
+}
+
+
+const CountryDisplay = ({ countries, handleView }) => {
     console.log(countries)
   
     if (countries === null) {
@@ -56,7 +63,7 @@ const CountryDisplay = ({ countries }) => {
     return (
       <div>
         {countries.map(c =>
-          <span key={c.cca2}>{c.name.common}<br /></span>
+          <CountryLine key={c.cca2} country={c} onClick={() => handleView(c.name.common)}/>
         )}
       </div>
     )

@@ -22,14 +22,17 @@ const App = () => {
     setValue(event.target.value)
   }
 
-  const countriesToShow = (value === '') ? null : countries.filter(c => c.name.common.toLowerCase().includes(value))
+  const changeView = (name) => {
+    setValue(name)
+  }
 
+  const countriesToShow = (value === '') ? null : countries.filter(c => c.name.common.toLowerCase().includes(value.toLowerCase()))
 
   return (
     <div>
       <Filter searchTerm={value} onChange={handleChange}/>
 
-      <CountryDisplay countries={countriesToShow} />
+      <CountryDisplay countries={countriesToShow} handleView={changeView}/>
     </div>
   )
 }
